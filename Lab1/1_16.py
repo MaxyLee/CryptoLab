@@ -7,4 +7,4 @@ for i in range(l):
     # s = ciphertext[i * 8:(i + 1) * 8]
     for j in range(8):
         plaintext += ciphertext[i * 8 + reper[j]]
-print(plaintext)
+print(plaintext.lower())
