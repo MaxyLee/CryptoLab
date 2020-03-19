@@ -6,7 +6,7 @@
 
 ## 习题1.5
 
-用`1_5.py`实现了穷尽密钥方法对密文进行破解，观察发现当密钥K=10时，对应的明文为`look up in the air its a bird its a plane its superman`
+用`lab1_5.py`实现了穷尽密钥方法对密文进行破解，观察发现当密钥K=10时，对应的明文为`look up in the air its a bird its a plane its superman`
 
 ## 习题1.16
 
@@ -16,13 +16,13 @@
 | :-----------: | :--: | :--: | :--: | :--: | :--: | :--: | :--: | :--: |
 | $\pi^{-1}(x)$ |  2   |  4   |  6   |  1   |  8   |  3   |  5   |  7   |
 
-用`1_16.py`进行解密，得到明文`gentlemen do not read each others mail`
+用`lab1_16.py`进行解密，得到明文`gentlemen do not read each others mail`
 
 ## 习题1.21
 
 ### 代换密码
 
-代码见`1_26_1.py`
+代码见`lab1_26_1.py`
 
 对词频进行统计，结果如下：
 
@@ -44,7 +44,7 @@
 
 `------t-e--let----w-l-we----t------e-------e----t-------e--le--e--l---e--h-e---e-e------e------hel----e--------------------t---------ht-wheel-----wt-hel----le------t---h--e-lw---l--e-----e--e-te-thewheel-----w-t--the--ewheele--eh--le--wh--h----e--e-t---te-`
 
-再对剩余的高频词进行大量的假设于验证后，最终得到了合理的密钥如下：
+再对剩余的高频词进行大量的假设与验证后，最终得到了合理的密钥如下：
 
 ```python
 sub = {
@@ -62,6 +62,8 @@ sub = {
 `i may not be able to grow flowers but my garden produces just as many dead leaves old over shoes pieces of rope and bushels of dead grass as anybodys and today i bought a wheel barrow to help in clearing it up i have always loved and respected the wheel barrow it is the one wheeled vehicle of which i am perfect master`
 
 ### 维吉尼亚密码
+
+代码见`lab1_26_2.py`
 
 首先使用Kasiski测试法。在密文中，密文串HJV出现在五个位置，起始位置分别为107、125、263、317、329，其距离分别为18、156、210、222。这四个数的最大公因数为6，因此猜测密钥字的长度很可能是6。
 
@@ -90,8 +92,49 @@ M[0]: 0.041 M[1]: 0.038 M[2]: 0.036 M[3]: 0.042 M[4]: 0.038 M[5]: 0.026 M[6]: 0.
 
 ### 仿射密码
 
+代码见`lab1_26_3.py`
 
+考虑到密钥空间只有312，因此尝试采用枚举法破解：遍历所有可能的密钥并解密出对应的明文，并使用类似上一题的方法计算重合指数，当指数接近0.065时则极有可能为正确的密钥。经过枚举法，得到了一个可能的密钥$K=(19, 4)$，对应的明文为：
+
+`o canada `
+
+`terre de nos aieux `
+
+`ton front est ceint de faeurons glorieux `
+
+`car ton bras sait porter lepee `
+
+`il sait porter la croix `
+
+`ton histoire est une epopee `
+
+`des plus brillants exploits `
+
+`et ta valeur de foi trempee `
+
+`protegera nos foyers et nos droits`
+
+注意到明文为法语，因此前面的分析方法是不严谨的，但是明文却符合英文字母的概率分布，这可能是一个巧合
 
 ### 未知具体密码
 
+代码见`lab1_26_4.py`
+
+首先统计词频如下：
+
+`A: 17 B: 17 C: 18 D: 9 E: 21 F: 16 G: 16 H: 17 I: 16 J: 12 K: 13 L: 23 M: 21 N: 4 O: 7 P: 8 Q: 6 R: 15 S: 23 T: 12 U: 12 V: 21 W: 11 X: 9 Y: 22 Z: 7`
+
+发现分布相对均匀，因此是代换密码的可能性较小。
+
+假设是仿射密码，使用之间的枚举法尝试破解，结果没有成功。
+
+再考虑是维吉尼亚密码，使用重合指数法发现当m=6时比较符合，之后用前述方法得到密钥$K=(19, 7, 4, 14, 17, 24)$
+
+解密后得到明文：
+
+`i grew up among slow talkers men in particular who dropped words a few at a time like beans in a hill and when i got to minneapolis where people took a lake wobegon comma to mean the end of a story i couldnt speak a whole sentence in company and was considered not too briaht so i enrolled in a speech couqse taught by orvilles and the founder of reflexive relaxology a self hypnotic technique that enabled a person to speak up to three hundred words per minute`
+
 ## 习题1.26
+
+若已知m、n，则对密文矩阵求转置即可得到明文
+

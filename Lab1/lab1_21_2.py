@@ -1,13 +1,19 @@
 ciphertext = 'KCCPKBGUFDPHQTYAVINRRTMVGRKDNBVFDETDGILTXRGUDDKOTFMBPVGEGLTGCKQRACQCWDNAWCRXIZAKFTLEWRPTYCQKYVXCHKFTPONCQQRHJVAJUWETMCMSPKQDYHJVDAHCTRLSVSKCGCZQQDZXGSFRLSWCWSJTBHAFSIASPRJAHKJRJUMVGKMITZHFPDISPZLVLGWTFPLKKEBDPGCEBSHCTJRWXBAFSPEZQNRWXCVYCGAONWDDKACKAWBBIKFTIOVKCGGHJVLNHIFFSQESVYCLACNVRWBBIREPBBVFEXOSCDYGZWPFDTKFQIYCWHJVLNHIQIBTKHJVNPIST'
 key = [2,17,24,15,19,14]
+probability = [0.082, 0.015, 0.028, 0.043, 0.127,      
+                        0.022, 0.02, 0.061, 0.07, 0.002, 
+                        0.008, 0.04, 0.024, 0.067,0.075,
+                        0.019, 0.001, 0.06, 0.063, 0.091,
+                        0.028, 0.01, 0.023, 0.001, 0.02, 
+                        0.001]
 
 def kasiski(ciphertext):
     kasiski = {}
     n = len(ciphertext)
     for i in range(n - 2):
         s = ciphertext[i:i + 3]
-        if s == 'HJV':
-            print(i - 107)
+        # if s == 'HJV':
+        #     print(i - 107)
         if s in kasiski:
             kasiski[s] += 1
         else:
@@ -53,12 +59,7 @@ def vigenere(ciphertext, m):
     
     for i in range(m):
         frequency = [0] * 26
-        probability = [0.082, 0.015, 0.028, 0.043, 0.127,      
-                        0.022, 0.02, 0.061, 0.07, 0.002, 
-                        0.008, 0.04, 0.024, 0.067,0.075,
-                        0.019, 0.001, 0.06, 0.063, 0.091,
-                        0.028, 0.01, 0.023, 0.001, 0.02, 
-                        0.001]
+        
         s = split[i]
         n = len(s)
 
@@ -84,5 +85,5 @@ def decrypt(ciphertext, key):
 if __name__ == "__main__":
     # kasiski(ciphertext)
     # index_of_coincidence(ciphertext, 6)
-    # vigenere(ciphertext, 6)
+    vigenere(ciphertext, 6)
     print(decrypt(ciphertext,key))

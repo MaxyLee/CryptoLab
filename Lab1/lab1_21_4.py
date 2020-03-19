@@ -1,0 +1,16 @@
+import lab1_21_1 as sub
+import lab1_21_2 as vi
+import lab1_21_3 as aff
+
+ciphertext = 'BNVSNSIHQCEELSSKKYERIFJKXUMBGYKAMQLJTYAVFBKVTDVBPVVRJYYLAOKYMPQSCGDLFSRLLPROYGESEBUUALRWXMMASAZLGLEDFJBZAVVPXWICGJXASCBYEHOSNMULKCEAHTQOKMFLEBKFXLRRFDTZXCIWBJSICBGAWDVYDHAVFJXZIBKCGJIWEAHTTOEWTUHKRQVVRGZBXYIREMMASCSPBHLHJMBLRFFJELHWEYLWISTFVVYEJCMHYUYRUFSFMGESIGRLWALSWMNUHSIMYYITCCQPZSICEHBCCMZFEGVJYOCDEMMPGHVAAUMELCMOEHVLTIPSUYILVGFLMVWDVYDBTHFRAYISYSGKVSUUHYHGGCKTMBLRX'
+key = [19, 7, 4, 14, 17, 24]
+
+if __name__ == "__main__":
+    sub.get_frequency(ciphertext)
+    # vi.kasiski(ciphertext)
+    # for i in range(1, 10):
+    #     print("i:", i)
+    #     vi.index_of_coincidence(ciphertext, i)
+    # vi.vigenere(ciphertext, 6)
+    aff.enum(ciphertext)
+    # print(vi.decrypt(ciphertext, key))
