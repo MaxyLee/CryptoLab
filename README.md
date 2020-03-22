@@ -1,1 +1,1 @@
-# CrytoLab
+# CryptoLab
