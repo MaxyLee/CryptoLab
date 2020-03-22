@@ -1,7 +1,9 @@
 import numpy as np
+import consts as c
 
 ciphertext = 'BEEAKFYDJXUQYHYJIQRYHTYJIQFBQDUYJIIKFUHCQD'
 asciiCiphertext = np.fromstring(ciphertext, dtype = np.uint8)
+
 for i in range(len(asciiCiphertext)):
     asciiCiphertext[i] -= ord('A')
 # print(asciiCiphertext)
