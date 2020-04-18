@@ -8,4 +8,5 @@ def decrypt(ciphertext, m, n):
     return plaintext.lower()
 
 if __name__ == '__main__':
-    print(decrypt(ciphertext, 7, 6))
+    # print(decrypt(decrypt(ciphertext, 3, 14), 7, 6))
+    print(decrypt(ciphertext, 3, 14))

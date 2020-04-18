@@ -2,7 +2,64 @@
 
 ## Enigma
 
+这里实现了两种分析方法，分别是Rejewski方法和Turing方法
 
+前者主要破解思路是利用了德军发送密钥时的一个漏洞：他们会将当日随机选定的密钥重复一次进行发送，即以XYZXYZ这种形式，假设加密后的秘文为HGABLE，那么利用enigma的性质可以得到，H加密两次后得到B，G加密两次后得到L，A加密两次后得到E，利用这一性质即可快速得到可能的密钥组合，从而得到德军的日密钥，程序破解结果如下：
+
+```shell
+[maxinyu@11:32:07]~/Desktop/mdlife/Courses/Third_Year/Cryptography/CryptoLab/Lab1$ python3 enigma.py 
+Rejewski analyse...
+Get!!!
+(0, 1, 2)
+('B', 'M', 'I')
+GXOGXO
+Get!!!
+(0, 2, 1)
+('D', 'D', 'T')
+LICLIC
+Get!!!
+(0, 2, 1)
+('Q', 'Q', 'G')
+AEOAEO
+Get!!!
+(0, 2, 1)
+('T', 'A', 'U')
+UDDUDD
+Get!!!
+(1, 0, 2)
+('D', 'D', 'G')
+RVRRVR
+Get!!!
+(1, 0, 2)
+('R', 'J', 'Z')
+WYSWYS
+Get!!!
+(1, 2, 0)
+('D', 'A', 'T')
+SHJSHJ
+Get!!!
+(1, 2, 0)
+('J', 'F', 'F')
+CJPCJP
+Get!!!
+(2, 0, 1)
+('B', 'X', 'E')
+IWJIWJ
+```
+
+这些即是所有肯能的组合，之后就需要人工验证每个密钥的正确性，这样小规模的暴力破解是可以接受的。
+
+到Turing破解时，德军对enigma进行了改进，导致前一方法的失效，因此Turing只能采用一种较为暴力的方法。首先他发现了enigma的一个特点，就是一个字母永远不会被加密为本身，这对密码的破译有一定的帮助，利用这一特点他们可以排除许多不可能的情况。其次，他们根据猜测出来的明密文对，来得到一个字母链，例如将**W E T T E R**加密成**E R K M G W**，那么就可以得到:**W->E->R->W**这样的一个字母链，利用这个链即可排除许多不可能的情况，程序运行结果如下：
+
+```shell
+[maxinyu@11:40:37]~/Desktop/mdlife/Courses/Third_Year/Cryptography/CryptoLab/Lab1$ python3 enigma.py 
+Turing analyse...
+Get
+(0, 1, 2)
+('B', 'D', 'X')
+```
+
+其中明密文对是**WETTERBERICHTADOLFHITLER**和 **DIGENINOZYSIPLXYKMIUHHQC**
 
 ## 习题1.5
 
@@ -137,4 +194,70 @@ M[0]: 0.041 M[1]: 0.038 M[2]: 0.036 M[3]: 0.042 M[4]: 0.038 M[5]: 0.026 M[6]: 0.
 ## 习题1.26
 
 若已知m、n，则对密文矩阵求转置即可得到明文
+
+对于给定的密文，如果按3*14分组即可得到：
+
+mmrietaodyureo
+
+yruqnohyseagrg
+
+aaytcrrwoordnw
+
+将其分为七组，如下：
+
+my
+
+am
+
+ra
+
+(mary ma)
+
+ru
+
+yi
+
+qt
+
+(mary mary quit)
+
+en
+
+ct
+
+or
+
+(mary mary quite contr)
+
+ah
+
+ro
+
+yw
+
+(mary mary quite contrary how)
+
+ds
+
+oy
+
+eo
+
+(mary mary quite contrary how does yo)
+
+ua
+
+rr
+
+gd
+
+(mary mary quite contrary how does your gard)
+
+er
+
+no
+
+gw
+
+(mary mary quite contrary how does your garden grow)
 
