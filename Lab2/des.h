@@ -1,6 +1,10 @@
 #pragma once
 #include "consts.h"
 
+#ifdef DEBUG
+#include <cstdio>
+#endif
+
 const static u8 IP[64] = {
     58, 50, 42, 34, 26, 18, 10, 2,
     60, 52, 44, 36, 28, 20, 12, 4,
@@ -71,7 +75,7 @@ const static u8 PBox[32] = {
     19, 13, 30,  6, 22, 11,  4, 25,
 };
 
-const static u8 PC1[58] = {
+const static u8 PC1[56] = {
     57, 49, 41, 33, 25, 17,  9,  1,
     58, 50, 42, 34, 26, 18, 10,  2,
     59, 51, 43, 35, 27, 19, 11,  3,
@@ -81,7 +85,7 @@ const static u8 PC1[58] = {
     29, 21, 13,  5, 28, 20, 12,  4,
 };
 
-const static u8 PC2[58] = {
+const static u8 PC2[48] = {
     14, 17, 11, 24,  1,  5,
      3, 28, 15,  6, 21, 10,
     23, 19, 12,  4, 26,  8,
@@ -103,5 +107,11 @@ const static u8 E[48] = {
     28, 29, 30, 31, 32,  1,
 };
 
+void gen_subkeys(u64 key, bool encrypt);
 u32 f(u32 halfblock, u64 subkey);
-u64 DES(u64 key, u64 plaintext, bool encrypt);
+u64 DES(u64 in);
+void DES_CBC(u64 iv, u64 key, u64* in, u64* out, u64 length,bool encrypt);
+
+#ifdef DEBUG
+void des_debug();
+#endif
