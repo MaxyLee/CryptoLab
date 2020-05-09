@@ -116,12 +116,6 @@ void AES128(u8* in, u8* out, bool encrypt) {
     u8 mix[16] = {};
     if(encrypt) {
         add_roundkey(in, add, 0);
-        
-        // printf("add: 0x");
-        // for(int i = 0; i < 16; i++) {
-        //     printf("%x", add[i]);
-        // }
-        // printf("\n");
 
         for(int i = 1; i < 10; i++) {
             sub_bytes(add, sub);

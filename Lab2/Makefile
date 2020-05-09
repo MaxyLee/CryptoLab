@@ -1,9 +1,9 @@
 METHOD = DES
-CFLAGS = -O2 -DDEBUG 
+CFLAGS = -O2
 
-target: main.o des.o aes128.o sm4.o rc4.o bm.o sha2.o sha3.0
-	g++ $(CFLAGS) -o target main.o des.o aes128.o sm4.o rc4.o bm.o sha2.o sha3.o
-main.o: main.cpp des.h aes128.h sm4.h rc4.h bm.h sha2.h sha3.h
+target: main.o des.o aes128.o sm4.o rc4.o bm.o sha2.o sha3.o sm3.o
+	g++ $(CFLAGS) -o target main.o des.o aes128.o sm4.o rc4.o bm.o sha2.o sha3.o sm3.o
+main.o: main.cpp des.h aes128.h sm4.h rc4.h bm.h sha2.h sha3.h sm3.h
 	g++ $(CFLAGS) -o main.o -c main.cpp
 des.o: des.cpp des.h
 	g++ $(CFLAGS) -o des.o -c des.cpp
@@ -19,6 +19,8 @@ sha2.o: sha2.cpp sha2.h
 	g++ $(CFLAGS) -o sha2.o -c sha2.cpp
 sha3.o: sha3.cpp sha3.h
 	g++ $(CFLAGS) -o sha3.o -c sha3.cpp
+sm3.o: sm3.cpp sm3.h
+	g++ $(CFLAGS) -o sm3.o -c sm3.cpp
 run:
 	make
 	./target $(METHOD)

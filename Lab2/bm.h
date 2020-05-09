@@ -5,7 +5,7 @@
 #include <cstdio>
 #endif
 
-void B_M(u8* a, u64 N);
+void B_M(u8* a, u8* out, u64 N);
 
 #ifdef DEBUG
 void bm_debug();

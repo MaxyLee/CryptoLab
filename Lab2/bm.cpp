@@ -1,7 +1,7 @@
 #include "bm.h"
 #include <cstring>
 
-void B_M(u8* a, u64 N) {
+void B_M(u8* a, u8* out, u64 N) {
     u8** f = new u8*[N + 1];
     u8* d = new u8[N];
     u8* l = new u8[N + 1];
@@ -58,6 +58,12 @@ void B_M(u8* a, u64 N) {
         #endif
         
     }
+
+    for(int i = 0; i < N; i++) {
+        out[i] = f[N][i];
+    }
+    out[N] = l[N];
+
     #ifdef DEBUG
     printf("f_%d(x) = ", N);
     if(f[N][0] > 0) {
@@ -78,6 +84,7 @@ void bm_debug() {
     //0010101001
     u8 a[] = {0, 0, 1, 0, 1, 0, 1, 0, 0, 1};
     u64 N = 10;
-    B_M(a, N);
+    u8 out[10] = {};
+    B_M(a, out, N);
 }
 #endif

@@ -1,7 +1,7 @@
 #include "rc4.h"
 #include <cstring>
 
-void RC4(u8* key, u8* in, u8* out, u64 keylen, u64 length, bool encrypt) {
+void RC4(u8* key, u8* in, u8* out, u64 keylen, u64 length) {
     u8 S[256] = {};
     u8 T[256] = {};
     u8* key_stream = new u8[length];

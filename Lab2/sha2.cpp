@@ -52,7 +52,7 @@ u32 sigma_1(u32 x) {
     return S(x, 17) ^ S(x, 19) ^ (x >> 10);
 }
 
-void SHA256(u32* in, u32* out, u64 bytenum) {
+void SHA2_256(u32* in, u32* out, u64 bytenum) {
     u64 currlen = padding(in, bytenum);
     u32 H[8] = {0x6a09e667, 0xbb67ae85, 0x3c6ef372, 0xa54ff53a, 0x510e527f, 0x9b05688c, 0x1f83d9ab, 0x5be0cd19};
     u32 W[64] = {};
@@ -101,7 +101,7 @@ void sha2_debug() {
     u32 in[16] = {0x61626300};
     u32 out[8] = {};
     u64 bytenum = 3;
-    SHA256(in, out, bytenum);
+    SHA2_256(in, out, bytenum);
     printf("SHA256: 0x");
     for(int i = 0; i < 8; i++) {
         printf("%x", out[i]);

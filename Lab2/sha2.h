@@ -24,7 +24,7 @@ u32 Sigma_0(u32 x);
 u32 Sigma_1(u32 x);
 u32 sigma_0(u32 x);
 u32 sigma_1(u32 x);
-void SHA256(u32* in, u32* out, u64 bytenum);
+void SHA2_256(u32* in, u32* out, u64 bytenum);
 
 #ifdef DEBUG
 void sha2_debug();

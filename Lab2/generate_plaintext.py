@@ -6,4 +6,3 @@ if __name__ == "__main__":
     with open("random.in", 'w') as f:
         for _ in range(length):
             f.write(str(random.randint(0, 1)))
-
