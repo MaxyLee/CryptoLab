@@ -173,9 +173,9 @@ int main(int argc, char* argv[]) {
         fwrite(out, sizeof(out), 2048, fout);
         fclose(fout);
     } else if(strcmp(argv[1], "BM") == 0) {
-        u8 a[80] = {};
-        u64 N = 80;
-        u8 out[81] = {};
+        u8 a[10] = {};
+        u64 N = 10;
+        u8 out[11] = {};
         for(int i = 0; i < N; i++) {
             a[i] = rand() % 2;
         }
