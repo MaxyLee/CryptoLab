@@ -72,7 +72,7 @@ void SM4_CBC(u32 iv[], u32 MK[], u32* in, u32* out, u64 length, bool encrypt) {
         }
     } else {
         for(int i = 0; i < length; i++) {
-            SM4(tmp, out + i * 4);
+            SM4(in + i * 4, out + i * 4);
             for(int j = 0; j < 4; j++) {
                 out[i * 4 + j] = out[i * 4 + j] ^ tmp[j];
                 tmp[j] = out[i * 4 + j];
